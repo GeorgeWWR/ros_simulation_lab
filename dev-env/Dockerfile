@@ -16,6 +16,9 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
  && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
       build-essential \
       python-catkin-tools \
+      python-pip \
+      python-rosdep \
+      python-tk \
       ros-melodic-controller-manager \
       ros-melodic-desktop-full \
       ros-melodic-gazebo-ros-control \
@@ -28,6 +31,9 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
       ros-melodic-position-controllers \
       ros-melodic-velocity-controllers \
  && rm -rf /var/lib/apt/lists/*
+
+RUN pip install circle-fit \
+ && rosdep init
 
 # Ensure ROS commands are available in every new shell without having to explicitly source the setup file.
 RUN echo "source /opt/ros/melodic/setup.bash" >> /home/wwr/.bashrc
