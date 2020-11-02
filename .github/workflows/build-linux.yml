@@ -15,20 +15,20 @@ jobs:
         submodules: recursive
     - name: Install Gazebo
       run: |
-        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
-        echo deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(. /etc/os-release && echo "${VERSION_CODENAME}") main > /etc/apt/sources.list.d/gazebo-stable.list
-        apt-get update
-        DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+        sudo echo deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(. /etc/os-release && echo "${VERSION_CODENAME}") main > /etc/apt/sources.list.d/gazebo-stable.list
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
           gazebo9 \
           libgazebo9-dev
-        rm -rf /var/lib/apt/lists/*
+        sudo rm -rf /var/lib/apt/lists/*
       shell: bash {0}
     - name: Install ROS Melodic
       run: |
-        apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-        echo "deb http://packages.ros.org/ros/ubuntu $(. /etc/os-release && echo "${VERSION_CODENAME}") main" > /etc/apt/sources.list.d/ros-latest.list
-        apt-get update
-        DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
+        sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+        sudo echo "deb http://packages.ros.org/ros/ubuntu $(. /etc/os-release && echo "${VERSION_CODENAME}") main" > /etc/apt/sources.list.d/ros-latest.list
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
           build-essential \
           python-catkin-tools \
           python-pip \
@@ -45,7 +45,7 @@ jobs:
           ros-melodic-effort-controllers \
           ros-melodic-position-controllers \
           ros-melodic-velocity-controllers
-        rm -rf /var/lib/apt/lists/*
+        sudo rm -rf /var/lib/apt/lists/*
       shell: bash {0}
     - name: Build
       run: |
