@@ -15,8 +15,8 @@ jobs:
         submodules: recursive
     - name: Install Gazebo
       run: |
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
-        sudo echo deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(. /etc/os-release && echo "${VERSION_CODENAME}") main > /etc/apt/sources.list.d/gazebo-stable.list
+        sudo APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+        sudo su -c echo deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(. /etc/os-release && echo "${VERSION_CODENAME}") main > /etc/apt/sources.list.d/gazebo-stable.list
         sudo apt-get update
         sudo DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
           gazebo9 \
@@ -25,8 +25,8 @@ jobs:
       shell: bash {0}
     - name: Install ROS Melodic
       run: |
-        sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-        sudo echo "deb http://packages.ros.org/ros/ubuntu $(. /etc/os-release && echo "${VERSION_CODENAME}") main" > /etc/apt/sources.list.d/ros-latest.list
+        sudo APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+        sudo su -c echo "deb http://packages.ros.org/ros/ubuntu $(. /etc/os-release && echo "${VERSION_CODENAME}") main" > /etc/apt/sources.list.d/ros-latest.list
         sudo apt-get update
         sudo DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
           build-essential \
