@@ -49,10 +49,10 @@ jobs:
       shell: bash {0}
     - name: Build
       run: |
+        sudo rosdep init
+        rosdep update
         source /opt/ros/melodic/setup.bash
         sudo apt update
-        rosdep init
-        rosdep update
         rosdep install --from-paths src --ignore-src -r -y
         pip install circle-fit
         catkin_make
