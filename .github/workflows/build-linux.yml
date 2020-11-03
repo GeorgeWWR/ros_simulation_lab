@@ -49,7 +49,7 @@ jobs:
       shell: bash {0}
     - name: Build
       run: |
-        source /opt/ros/melodic/setup.sh
+        source /opt/ros/melodic/setup.bash
         sudo apt update
         rosdep init
         rosdep update
@@ -61,7 +61,7 @@ jobs:
     - name: Run tests
       run: |
         export ROS_HOME=$PWD/ros_home
-        source /opt/ros/melodic/setup.sh
+        source /opt/ros/melodic/setup.bash
         source devel/setup.sh
         chmod +x src/demo/nodes/demo.py
         rosnode kill -a
